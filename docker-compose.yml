@@ -1,0 +1,19 @@
+services:
+  kb-server:
+    build: .
+    container_name: kb-server
+    restart: unless-stopped
+    environment:
+      - NODE_ENV=production
+      - KB_PORT=3000
+    volumes:
+      - ./data:/app/data
+      - ./obsidian:/app/obsidian
+    ports:
+      - "3000:3000"
+    networks:
+      - mhp-network
+
+networks:
+  mhp-network:
+    external: true
